@@ -1,4 +1,5 @@
 const inputField = document.querySelector('#input-field');
+let outputField = document.querySelector('#output-field');
 const insertHotfixBtn = document.querySelector('#hotfix-btn');
 
 const accentsMap = new Map([
@@ -25,9 +26,10 @@ const removeAccents = (text) => [...accentsMap].reduce(reducer, text);
 
 function insert() {
     let input = inputField.value.split(' ');
-    let dealing = input.join('-')
-
-    console.log(removeAccents(dealing))
+    let processingString = input.join('-');
+    let processedString = removeAccents(processingString);
+    
+    outputField.value = processedString;
 }
 
 insertHotfixBtn.addEventListener('click', insert)
