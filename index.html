@@ -9,10 +9,19 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <title>Arruma esse nome</title>
     </head>
 
     <body>
+        <div id="error-alert" class="alert-container alert">
+            Erro, cheque se o código da atividade se parece com "CLI-1234-".
+            <i class="fa-solid fa-skull"></i>
+        </div>
+        <div id="success-alert" class="alert-container alert">
+            Funcionou, agora é só criar sua branch e nice coding!
+            <i class="fa-solid fa-code-branch"></i>
+        </div>
         <div class="container">
             <div class="content">
                 <div class="intro">
@@ -33,8 +42,8 @@
                 <div class="output-field">
                     <input type="text" name="output-field" id="output-field" placeholder="Ctrl + C nome da branch">
                 </div>
-                <button class="generate">
-                    gerar nome
+                <button id="copy">
+                    copy!
                 </button>
             </div>
         </div>
