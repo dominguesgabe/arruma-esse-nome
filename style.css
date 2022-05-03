@@ -4,10 +4,15 @@
   text-align: center;
 }
 
+:root {
+    --climba-blue: #1c1d3b; 
+    --climba-green: #39b500;
+}
+
 body {
   font-family: "Roboto Mono", monospace;
-  background-color: rgb(35, 0, 63);
-  color: rgb(145, 226, 195);
+  background-color: var(--climba-blue);
+  color: var(--climba-green);
 }
 
 .alert-container {
@@ -51,7 +56,18 @@ body {
 h1 {
     font-size: 3.3em;
     font-weight: 700;
-    color: rgb(145, 226, 195);
+    color: var(--climba-green);
+}
+
+h1 b {
+    background-color: #fff;
+    color: var(--climba-blue);
+}
+
+h1 b::before {
+    content: "";
+    background-color: #fff;
+   
 }
 
 p {
@@ -65,7 +81,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   border: none;
-  background-color: rgb(145, 226, 195);
+  background-color: var(--climba-green);
   padding-top: 12px;
   padding-bottom: 12px;
   width: 160px;

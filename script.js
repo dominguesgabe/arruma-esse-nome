@@ -7,7 +7,7 @@ const successAlert = document.querySelector('#success-alert');
 const container = document.querySelector('.container');
 const copyBtn = document.querySelector('#copy');
 
-const regexCLI = /^[A-Z]{3}[-][0-9]{4}[-]/;
+const regexCLI = /^[a-zA-Z]{3}[-][0-9]{4}/;
 
 const accentsMap = new Map([
     ["a", "Á|À|Ã|Â|Ä"],
@@ -30,7 +30,7 @@ const reducer = (acc, [key]) => acc.replace(new RegExp(accentsMap.get(key), "g")
 const removeAccents = (text) => [...accentsMap].reduce(reducer, text);
 
 function insert(param) {
-    const caller = param.target.id;
+    const operation = param.target.id;
     let input = removeAccents(inputField.value);
     
     if(regexCLI.test(input)) {
@@ -40,11 +40,13 @@ function insert(param) {
         };
 
         input = input.replace(/[^a-zA-Z0-9 -]/g, "");
-        input = input.split(' ');
-        input = input.join('-');
-        input = `${caller}/${input}` 
+        input = input.replace(/[CLI-]/g, "");
+        input = input.split(' ').join('-');
+        input = input.toLowerCase();
+        input = `${operation}/CLI-${input}`;
 
         outputField.value = input;
+
     } else {
         if(!errorAlert.classList.contains('modalActive')) {
             errorAlert.classList.toggle('modalActive');
@@ -57,18 +59,25 @@ function insert(param) {
 }
 
 function copy() {
-    outputField.select();
-    document.execCommand('copy');
+    if(outputField.value) {
+        outputField.select();
+        document.execCommand('copy');
+    
+        successAlert.classList.add('modalActive');
+        container.classList.add('modalActive');
+        setTimeout(() => {
+            modalfun();
+        }, 2000);
+    }
+};
 
-    if(!successAlert.classList.contains('modalActive')) {
-        successAlert.classList.toggle('modalActive');
-        container.classList.toggle('modalActive');
-    };
-}
+function modalfun() {
+    successAlert.classList.remove('modalActive');
+    container.classList.remove('modalActive');
+} 
 
 hotfixBtn.addEventListener('click', insert)
 featureBtn.addEventListener('click', insert)
 copyBtn.addEventListener('click', copy)
 
-// cLi-1233 quando fazer imagens do tipo "webp" não pe!rmitir o uso da extensão$
 
