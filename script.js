@@ -7,6 +7,8 @@ const successAlert = document.querySelector('#success-alert');
 const container = document.querySelector('.container');
 const copyBtn = document.querySelector('#copy');
 
+window.addEventListener('load', inputField.focus())
+
 const regexCLI = /^[a-zA-Z]{3}[-][0-9]{4}/;
 
 const accentsMap = new Map([
@@ -22,8 +24,7 @@ const accentsMap = new Map([
     ["u", "ú|ù|û|ü"],
     ["c", "Ç"],
     ["c", "ç"],
-    ["n", "Ñ"],
-    ["n", "ñ"]
+    ["c", "C"]
   ]);
   
 const reducer = (acc, [key]) => acc.replace(new RegExp(accentsMap.get(key), "g"), key); 
@@ -39,7 +40,7 @@ function insert(param) {
             container.classList.toggle('modalActive');
         };
 
-        input = input.replace(/[^a-zA-Z0-9 -]/g, "");
+        input = input.replace(/[a-zA-Z]{3}[-]/g, "");
         input = input.replace(/[CLI-]/g, "");
         input = input.split(' ').join('-');
         input = input.toLowerCase();
@@ -67,7 +68,7 @@ function copy() {
         container.classList.add('modalActive');
         setTimeout(() => {
             modalfun();
-        }, 2000);
+        }, 3000);
     }
 };
 
