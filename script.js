@@ -7,7 +7,7 @@ const successAlert = document.querySelector('#success-alert');
 const container = document.querySelector('.container');
 const copyBtn = document.querySelector('#copy');
 
-window.addEventListener('load', inputField.focus())
+window.addEventListener('load', inputField.focus());
 
 const regexCLI = /^[a-zA-Z]{3}[-][0-9]{4}/;
 
@@ -32,10 +32,11 @@ const removeAccents = (text) => [...accentsMap].reduce(reducer, text);
 
 function insert(param) {
     const operation = param.target.id;
-    let input = removeAccents(inputField.value);
+    let input = removeAccents(inputField.value.substring(0, 55).trim());
     
     if(regexCLI.test(input)) {
         if(errorAlert.classList.contains('modalActive')) {
+            
             errorAlert.classList.toggle('modalActive');
             container.classList.toggle('modalActive');
         };
@@ -68,7 +69,7 @@ function copy() {
         container.classList.add('modalActive');
         setTimeout(() => {
             modalfun();
-        }, 3000);
+        }, 3500);
     }
 };
 
@@ -80,5 +81,3 @@ function modalfun() {
 hotfixBtn.addEventListener('click', insert)
 featureBtn.addEventListener('click', insert)
 copyBtn.addEventListener('click', copy)
-
-

@@ -44,6 +44,13 @@ body {
     margin: 100px auto 0;
 }
 
+.btn-flex {
+    display: flex;
+    width: 500px;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
 .container.modalActive {
     width: 920px;
     margin: 35px auto 0;
@@ -76,7 +83,7 @@ p {
     margin: 0 auto;
 }
 
-button {
+.btn {
   font-family: "Roboto Mono", monospace;
   font-size: 1em;
   font-weight: 500;
@@ -91,7 +98,8 @@ button {
   transition: 120ms;
 }
 
-button:hover {
+button:hover,
+a:hover {
     filter: brightness(0.8);
 } 
 
@@ -101,4 +109,9 @@ input {
     height: 40px;
     border-radius: 3px;
     font-family: "Roboto Mono", monospace;
+}
+
+a {
+    text-decoration: none;
+    color: var(--climba-blue);
 }
