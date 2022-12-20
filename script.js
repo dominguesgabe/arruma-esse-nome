@@ -43,6 +43,7 @@ function insert(param) {
 
         input = input.replace(/[a-zA-Z]{3}[-]/g, "");
         input = input.replace(/[CLI-]/g, "");
+        input = input.replace(/[!@#$%¨&*()+='"´`{}^~:;?|<,>._]/g, "");
         input = input.split(' ').join('-');
         input = input.toLowerCase();
         input = `${operation}/CLI-${input}`;
