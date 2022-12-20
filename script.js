@@ -11,28 +11,9 @@ window.addEventListener('load', inputField.focus());
 
 const regexCLI = /^[a-zA-Z]{3}[-][0-9]{4}/;
 
-const accentsMap = new Map([
-    ["a", "Á|À|Ã|Â|Ä"],
-    ["a", "á|à|ã|â|ä"],
-    ["e", "É|È|Ê|Ë"],
-    ["e", "é|è|ê|ë"],
-    ["i", "Í|Ì|Î|Ï"],
-    ["i", "í|ì|î|ï"],
-    ["o", "Ó|Ò|Ô|Õ|Ö"],
-    ["o", "ó|ò|ô|õ|ö"],
-    ["u", "Ú|Ù|Û|Ü"],
-    ["u", "ú|ù|û|ü"],
-    ["c", "Ç"],
-    ["c", "ç"],
-    ["c", "C"]
-  ]);
-  
-const reducer = (acc, [key]) => acc.replace(new RegExp(accentsMap.get(key), "g"), key); 
-const removeAccents = (text) => [...accentsMap].reduce(reducer, text);
-
 function insert(param) {
     const operation = param.target.id;
-    let input = removeAccents(inputField.value.substring(0, 55).trim());
+    let input = inputField.value.substring(0, 55).trim();
     
     if(regexCLI.test(input)) {
         if(errorAlert.classList.contains('modalActive')) {
@@ -42,7 +23,15 @@ function insert(param) {
         };
 
         input = input.replace(/[a-zA-Z]{3}[-]/g, "");
-        input = input.replace(/[CLI-]/g, "");
+        input = input.replace(/[!@#$%¨&*()+='"´`{}^~:;?|<,>._]/g, "");
+        input = input.replace(/[AÁÀÃÂÄáàãâä]/g, "a");
+        input = input.replace(/[EÉÈÊËéèêë]/g, "e");
+        input = input.replace(/[IÍÌÎÏíìîï]/g, "i");
+        input = input.replace(/[OÓÒÔÕÖóòôõö]/g, "o");
+        input = input.replace(/[UÚÙÛÜúùûü]/g, "u");
+        input = input.replace(/[ÇçC]/g, "c");
+        input = input.replace(/[!@#$%¨&*()+='"´`{}^~:;?|<,>._]/g, "");
+
         input = input.split(' ').join('-');
         input = input.toLowerCase();
         input = `${operation}/CLI-${input}`;
