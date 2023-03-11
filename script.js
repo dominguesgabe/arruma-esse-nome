@@ -23,7 +23,6 @@ function insert(param) {
         };
 
         input = input.replace(/[a-zA-Z]{3}[-]/g, "");
-        input = input.replace(/[!@#$%¨&*()+='"´`{}^~:;?|<,>._]/g, "");
         input = input.replace(/[AÁÀÃÂÄáàãâä]/g, "a");
         input = input.replace(/[EÉÈÊËéèêë]/g, "e");
         input = input.replace(/[IÍÌÎÏíìîï]/g, "i");
@@ -31,7 +30,8 @@ function insert(param) {
         input = input.replace(/[UÚÙÛÜúùûü]/g, "u");
         input = input.replace(/[ÇçC]/g, "c");
         input = input.replace(/[!@#$%¨&*()+='"´`{}^~:;?|<,>._]/g, "");
-
+        input = input.replace(/[\[\]]/g, "");
+        input = input.replace(' - ', "-");
         input = input.split(' ').join('-');
         input = input.toLowerCase();
         input = `${operation}/CLI-${input}`;
