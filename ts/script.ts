@@ -1,18 +1,18 @@
-import Utils from "./Utils";
-import "../src/index.css";
+import Utils from "./Utils"
+import "../src/index.css"
 
+const inputField: HTMLInputElement | null = document.querySelector<HTMLInputElement>('#input-field')
+// const outputField: HTMLInputElement | null = document.querySelector('#output-field')
+// const hotfixBtn: HTMLButtonElement | null = document.querySelector('#hotfix');
+// const featureBtn: HTMLButtonElement | null = document.querySelector('#feature');
+// const errorAlert: HTMLDivElement | null = document.querySelector('#error-alert');
+// const successAlert: HTMLDivElement | null = document.querySelector('#success-alert');
+// const container: HTMLDivElement | null = document.querySelector('.container');
+// const copyBtn: HTMLButtonElement | null = document.querySelector('#copy');
 const utils: Utils = new Utils()
-console.log(utils.hello());
-// const inputField = document.querySelector('#input-field');
-// const outputField = document.querySelector('#output-field');
-// const hotfixBtn = document.querySelector('#hotfix');
-// const featureBtn = document.querySelector('#feature');
-// const errorAlert = document.querySelector('#error-alert');
-// const successAlert = document.querySelector('#success-alert');
-// const container = document.querySelector('.container');
-// const copyBtn = document.querySelector('#copy');
-// console.log(typeof inputField)
-// window.addEventListener('load', inputField.focus());
+
+window.addEventListener("load", utils.setFieldFocus(inputField))
+
 
 // const regexCLI = /^[a-zA-Z]{3}[-][0-9]{4}/;
 
