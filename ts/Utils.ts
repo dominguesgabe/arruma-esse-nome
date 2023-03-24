@@ -1,23 +1,36 @@
 export default class Utils {
 
-    public setFieldFocus(field: HTMLInputElement | null): void {
+    static setFieldFocus(field: HTMLInputElement | null): void {
         field?.focus()
     }
-    // public copy(copyField) {
-    //     if(copyField.value) {
-    //         copyField.select();
-    //         document.execCommand('copy');
-        
-    //         successAlert.classList.add('modalActive');
-    //         container.classList.add('modalActive');
-    //         setTimeout(() => {
-    //             modalfun();
-    //         }, 3500);
-    //     }
-    // };
     
-    // function modalfun() {
-    //     successAlert.classList.remove('modalActive');
-    //     container.classList.remove('modalActive');
-    // } 
+    static copy(field: HTMLInputElement): void {
+        if(field.value) {
+            field.select()
+            document.execCommand('copy')
+            this.copyFeedback()
+        }
+    };
+    
+    static replaceValue(field: HTMLInputElement, newValue: string): void {
+        field.value = newValue
+    }
+
+    private static copyFeedback(): void {
+
+    }
 }
+
+
+// function copyFeedback() {
+//     if(outputField.value) {
+//         outputField.select();
+//         document.execCommand('copy');
+    
+//         successAlert.classList.add('modalActive');
+//         container.classList.add('modalActive');
+//         setTimeout(() => {
+//             modalfun();
+//         }, 3500);
+//     }
+// };
