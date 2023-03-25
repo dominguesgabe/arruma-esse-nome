@@ -1,18 +1,18 @@
 * {
-  margin: 0;
-  box-sizing: border-box;
-  text-align: center;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 :root {
-    --climba-blue: #1c1d3b; 
+    --climba-blue: #1c1d3b;
     --climba-green: #39b500;
 }
 
 body {
-  font-family: "Roboto Mono", monospace;
-  background-color: var(--climba-blue);
-  color: var(--climba-green);
+    font-family: "Roboto Mono", monospace;
+    background-color: var(--climba-blue);
+    color: var(--climba-green);
 }
 
 .alert-container {
@@ -22,15 +22,13 @@ body {
 
     transition: 120ms;
 }
-.alert-container.modalActive {
-    display: block;
-}
 
 .alert {
     color: #fff;
     border-radius: 3px;
     padding: 15px 40px;
 }
+
 #success-alert {
     background-color: rgb(2, 173, 73);
 }
@@ -46,35 +44,16 @@ body {
 
 .btn-flex {
     display: flex;
-    width: 650px;
-    justify-content: space-between;
+    width: 750px;
+    justify-content: center;
+    gap: 10px;
     margin: 0 auto;
-}
-
-.container.modalActive {
-    width: 920px;
-    margin: 35px auto 0;
-}
-
-.issue-type {
-    margin-top: 30px;
 }
 
 h1 {
     font-size: 3.3em;
     font-weight: 700;
-    color: var(--climba-green);
-}
-
-h1 b {
-    background-color: #fff;
-    color: var(--climba-blue);
-}
-
-h1 b::before {
-    content: "";
-    background-color: #fff;
-   
+    color: #fff
 }
 
 p {
@@ -84,27 +63,29 @@ p {
 }
 
 .btn {
-  font-family: "Roboto Mono", monospace;
-  font-size: 1em;
-  font-weight: 500;
-  border: none;
-  background-color: var(--climba-green);
-  padding-top: 12px;
-  padding-bottom: 12px;
-  width: 160px;
-  border-radius: 3px;
-  margin-top: 12px;
-
-  transition: 120ms;
+    font-family: "Roboto Mono", monospace;
+    font-size: 1em;
+    font-weight: 500;
+    border: none;
+    background-color: var(--climba-green);
+    padding: 12px 0;
+    width: 160px;
+    border-radius: 3px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: .3s;
 }
 
 button:hover,
 a:hover {
     filter: brightness(0.8);
-} 
+}
 
 input {
-    margin: 12px 0 0;
+    margin: 10px 0 0;
     width: 550px;
     height: 40px;
     border-radius: 3px;

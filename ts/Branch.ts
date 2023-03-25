@@ -2,46 +2,67 @@ export default class Branch {
     constructor (
         private _issueType: string,
         private _name: string
+    ) {
+        this._name = this.stringTrim(this._name)
+        this.stringTestCLI(this._name)
+        this._name = this.stringToLowerCase(this._name)
+        this._name = this.cliToUpperCase(this._name)
+        this._name = this.stringFixLength(this._name)
+        this._name = this.removeAccents(this._name)
+        this._name = this.removeSpecialChars(this._name)
+        this._name = this.joinDashes(this._name)
+    }
 
-    ) {}
+    public getName(): string {
+        return this._issueType + this._name
+    }
+
+    private stringTestCLI(name: string): void {
+        const mustContainRegEx = /^[a-zA-Z]{3}[-][0-9]{4}/
+        
+        if (!mustContainRegEx.test(name)) {
+            throw "Nome sem CLI"
+        }
+    }
+
+    private stringToLowerCase(name: string): string {
+        return name.toLowerCase()
+    }
+
+    private cliToUpperCase(name: string): string {
+        const brokenString = name.split('-')
+        const upperString = [brokenString[0].toUpperCase(), brokenString[1]]
+
+        return upperString.join('-') + brokenString[2]
+    }
+
+    private stringTrim(name: string): string {
+        return name.trim()
+    }
+
+    private stringFixLength(name: string): string {
+        return name.substring(0, 55)
+    }
+
+    private removeAccents(name: string): string {
+        const normalizedString = name.normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+
+        return normalizedString
+    }
+
+    private removeSpecialChars(name: string): string {
+        const normalizedString = name
+            .replace(/[!@#$%¨&*()+='"´`{}^~:;?|<,>._]/g, "")
+            .replace(/[\[\]]/g, "")
+
+        return normalizedString
+    }
+
+    private joinDashes(name: string): string {
+        const brokenString = name.split(" ")
+        const stringWithoutWhitespaces = brokenString.filter(index => (index != "") ?? true)
+
+        return stringWithoutWhitespaces.join("-")
+    }
 }
-
-// const regexCLI = /^[a-zA-Z]{3}[-][0-9]{4}/;
-
-// function insert(param) {
-//     const operation = param.target.id;
-//     let input = inputField.value.substring(0, 55).trim();
-    
-//     if(regexCLI.test(input)) {
-//         if(errorAlert.classList.contains('modalActive')) {
-            
-//             errorAlert.classList.toggle('modalActive');
-//             container.classList.toggle('modalActive');
-//         };
-
-//         input = input.replace(/[a-zA-Z]{3}[-]/g, "");
-//         input = input.replace(/[AÁÀÃÂÄáàãâä]/g, "a");
-//         input = input.replace(/[EÉÈÊËéèêë]/g, "e");
-//         input = input.replace(/[IÍÌÎÏíìîï]/g, "i");
-//         input = input.replace(/[OÓÒÔÕÖóòôõö]/g, "o");
-//         input = input.replace(/[UÚÙÛÜúùûü]/g, "u");
-//         input = input.replace(/[ÇçC]/g, "c");
-//         input = input.replace(/[!@#$%¨&*()+='"´`{}^~:;?|<,>._]/g, "");
-//         input = input.replace(/[\[\]]/g, "");
-//         input = input.replace(' - ', "-");
-//         input = input.split(' ').join('-');
-//         input = input.toLowerCase();
-//         input = `${operation}/CLI-${input}`;
-
-//         outputField.value = input;
-
-//     } else {
-//         if(!errorAlert.classList.contains('modalActive')) {
-//             errorAlert.classList.toggle('modalActive');
-//             container.classList.toggle('modalActive');
-//         };
-//     };
-
-
-    
-// }

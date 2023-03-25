@@ -1,7 +1,9 @@
+import statusIcons from "./Enums"
+
 export default class Utils {
 
-    static setFieldFocus(field: HTMLInputElement | null): void {
-        field?.focus()
+    static setFieldFocus(field: HTMLInputElement): void {
+        field.focus()
     }
     
     static copy(field: HTMLInputElement): void {
@@ -16,21 +18,33 @@ export default class Utils {
         field.value = newValue
     }
 
-    private static copyFeedback(): void {
+    public static errorFeedback(error: string, button: string): void {
+        const targetButton = this.selectButton(button)
+
+        this.feedbackStyle(targetButton, 'fail', error, "#D11717") //make color call css class instead
+    }
+
+    private static copyFeedback(): void { //TODO implement
 
     }
+
+    private static selectButton(button: string): HTMLButtonElement {
+        return document.querySelector<HTMLButtonElement>(`#${button}`)!
+    }
+
+    public static feedbackStyle(button: HTMLButtonElement, feedbackType: string, message: string, color: string): void {
+        const initialHTML = button.innerText
+        const initialColor = button.style.backgroundColor
+
+        const htmlIcon = feedbackType === "success" ? statusIcons.success : statusIcons.fail
+        button.innerHTML = message + htmlIcon
+        button.style.backgroundColor = color
+
+        setTimeout(restoreInitialStyle, 1500)
+
+        function restoreInitialStyle(): void {
+            button.innerHTML = initialHTML
+            button.style.backgroundColor = initialColor
+        }
+    }
 }
-
-
-// function copyFeedback() {
-//     if(outputField.value) {
-//         outputField.select();
-//         document.execCommand('copy');
-    
-//         successAlert.classList.add('modalActive');
-//         container.classList.add('modalActive');
-//         setTimeout(() => {
-//             modalfun();
-//         }, 3500);
-//     }
-// };
